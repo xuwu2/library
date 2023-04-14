@@ -46,14 +46,10 @@ int main() {
                     printf("感谢您的使用!\n");
                     break;
                 default: //其他情况
-                    printf("a值为:%d\n", a);
-                    printf("choice值为:%d\n", choice);
                     printf("输入错误!\n");
                     break;
             }
         } else {
-            printf("a值为:%d\n", a);
-            printf("choice值为:%d\n", choice);
             printf("输入错误!请输入数字!\n");
         }
     }
