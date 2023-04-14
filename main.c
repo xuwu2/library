@@ -8,8 +8,11 @@ int main() {
     int a;
     int choice;
     int usernum = 0;
+    int found = 0;
     char newuser[100];
     char newpassword[100];
+    char inputuser[100];
+    char inputpassword[100];
     char user[usernum][100];
     char password[usernum][100];
     for (choice = 0; choice != 48;) {
@@ -34,9 +37,25 @@ int main() {
                     printf("注册成功!\n");
                     strcpy(user[usernum], newuser);
                     strcpy(password[usernum], newpassword);
+                    usernum++;
                     getchar();
                     break;
                 case 50: //50是2的ASCII码
+                    printf("请输入您的用户名:");
+                    scanf("%s", inputuser);
+                    printf("请输入您的密码:");
+                    scanf("%s", inputpassword);
+                    for (int i = 0; i < usernum; i++) {
+                        if (strcmp(user[i], inputuser) == 0 && strcmp(password[i], inputpassword) == 0) {
+                            found = 1;
+                            break;
+                        }
+                    }
+                    if(found == 1) {
+                        printf("登录成功!\n");
+                    } else {
+                        printf("登录失败!\n");
+                    }
                     break;
                 case 51: //51是3的ASCII码
                     break;
