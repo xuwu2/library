@@ -15,6 +15,7 @@ int main() {
     char inputpassword[100];
     char user[usernum][100];
     char password[usernum][100];
+    char books[6][100] = {"关", "于", "我", "的", "老","婆"};
     for (choice = 0; choice != 48;) {
         printf("欢迎使用图书管理系统!\n");
         printf("选择您的需求:(输入数字即可:)\n");
@@ -56,6 +57,7 @@ int main() {
                     } else {
                         printf("登录失败!\n");
                     }
+                    getchar();
                     break;
                 case 51: //51是3的ASCII码
                     break;
