@@ -9,14 +9,15 @@ int main() {
     int choice;
     int usernum = 0;
     int found = 0;
+    int islogin = 0;
     char newuser[100];
     char newpassword[100];
     char inputuser[100];
     char inputpassword[100];
     char user[usernum][100];
     char password[usernum][100];
-    int borrowed_books[6] = {0};
-    char books[6][100] = {"关", "于", "我", "的", "老","婆"};
+    int borrowed_books[9] = {0};
+    char books[9][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治", "历史", "地理"};
     for (choice = 0; choice != 48;) {
         printf("欢迎使用图书管理系统!\n");
         printf("选择您的需求:(输入数字即可:)\n");
@@ -55,20 +56,26 @@ int main() {
                     }
                     if(found == 1) {
                         printf("登录成功!\n");
+                        islogin = 1;
                     } else {
                         printf("登录失败!\n");
                     }
                     getchar();
                     break;
                 case 51: //51是3的ASCII码
-                    printf("Book List:\n");
-                    for (int i = 0; i < 6; i++) {
+                    if (islogin == 0) {
+                        printf("请登入后再尝试!\n");
+                        break;
+                    }
+                    printf("本馆目前库存如下:\n");
+                    for (int i = 0; i < 9; i++) {
                         printf("%d. %s", i+1, books[i]);
                         if (borrowed_books[i]) {
                             printf(" (borrowed)");
                         }
                         printf("\n");
                     }
+                    getchar();
                     break;
                 case 52: //52是4的ASCII码
                     break;
