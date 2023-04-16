@@ -18,8 +18,8 @@ int main() {
     char password[usernum][100];
     int borrowed_books[9] = {0};
     char books[9][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治", "历史", "地理"};
+    printf("欢迎使用图书管理系统!\n");
     for (choice = 0; choice != 48;) {
-        printf("欢迎使用图书管理系统!\n");
         printf("选择您的需求:(输入数字即可:)\n");
         printf("1.注册\n");
         printf("2.登录\n");
@@ -75,7 +75,7 @@ int main() {
                         }
                         printf("\n");
                     }
-                    getchar();
+//                    getchar();
                     break;
                 case 52: //52是4的ASCII码
                     break;
