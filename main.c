@@ -15,6 +15,7 @@ int main() {
     char inputpassword[100];
     char user[usernum][100];
     char password[usernum][100];
+    int borrowed_books[6] = {0};
     char books[6][100] = {"关", "于", "我", "的", "老","婆"};
     for (choice = 0; choice != 48;) {
         printf("欢迎使用图书管理系统!\n");
@@ -60,6 +61,14 @@ int main() {
                     getchar();
                     break;
                 case 51: //51是3的ASCII码
+                    printf("Book List:\n");
+                    for (int i = 0; i < 6; i++) {
+                        printf("%d. %s", i+1, books[i]);
+                        if (borrowed_books[i]) {
+                            printf(" (borrowed)");
+                        }
+                        printf("\n");
+                    }
                     break;
                 case 52: //52是4的ASCII码
                     break;
