@@ -16,7 +16,7 @@ int main() {
     char inputpassword[100];
     char user[usernum][100];
     char password[usernum][100];
-//    int borrowed_books[9] = {0};
+    int borrowed_books[9];
     char books[9][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治", "历史", "地理"};
     printf("欢迎使用图书管理系统!\n");
     for (choice = 0; choice != 48;) {
@@ -84,6 +84,7 @@ int main() {
                         printf("\n");
                     }
                     printf("请输入您要借阅的书籍编号:");
+//                    scanf("%d", &borrowed_books[0]);
 //                    getchar();
                     break;
                 case 52: //52是4的ASCII码
