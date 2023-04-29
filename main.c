@@ -6,29 +6,34 @@
 
 int main() {
     int a;
+    int booknum = 9;
     int choicebooks;
+    int choicebooks2;
+    int borrownum = 0;
     int choice;
     int usernum = 0;
     int found = 0;
     int islogin = 0;
+    char iscontinue;
     char newuser[100];
     char newpassword[100];
     char inputuser[100];
     char inputpassword[100];
     char user[usernum][100];
     char password[usernum][100];
-    int borrowed_books[9];
+    char borrowed_books[9][100];
+    char borrowbookname[100];
     char bookname[100];
     char books[9][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治", "历史", "地理"};
 
-    char books8[8][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治", "历史"};
-    char books7[7][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治"};
-    char books6[6][100] = {"数学", "语文", "英语", "化学", "物理", "生物"};
-    char books5[5][100] = {"数学", "语文", "英语", "化学", "物理"};
-    char books4[4][100] = {"数学", "语文", "英语", "化学"};
-    char books3[3][100] = {"数学", "语文", "英语"};
-    char books2[2][100] = {"数学", "语文"};
-    char books1[1][100] = {"数学"};
+//    char books8[8][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治", "历史"};
+//    char books7[7][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治"};
+//    char books6[6][100] = {"数学", "语文", "英语", "化学", "物理", "生物"};
+//    char books5[5][100] = {"数学", "语文", "英语", "化学", "物理"};
+//    char books4[4][100] = {"数学", "语文", "英语", "化学"};
+//    char books3[3][100] = {"数学", "语文", "英语"};
+//    char books2[2][100] = {"数学", "语文"};
+//    char books1[1][100] = {"数学"};
 
     printf("欢迎使用图书管理系统!\n");
     for (choice = 0; choice != 48;) {
@@ -90,14 +95,20 @@ int main() {
                         printf("请登入后再尝试!\n");
                         break;
                     }
+                    if (booknum == 0) {
+                        printf("本馆暂无书籍!\n");
+                        break;
+                    }
                     printf("本馆目前库存如下:\n");
-                    for (int i = 0; i < 9; i++) {
+
+                    for (int i = 0; i < booknum; i++) {
                         printf("%d. %s", i+1, books[i]);
                         printf("\n");
                     }
+
                     printf("请输入您要借阅的书籍编号:");
                     scanf("%d", &choicebooks);
-                    if (choicebooks > 9 || choicebooks < 1) {
+                    if (choicebooks > booknum || choicebooks < 1) {
                         printf("输入错误!\n");
                         break;
                     }
@@ -110,8 +121,52 @@ int main() {
                         strcpy(books[i], books[i + 1]);
                     }
                     strcpy(books[8], "");
+                    strcpy(borrowed_books[borrownum], bookname);
+                    borrownum++;
+//                    strcpy(books8[8],books[8]);
+                    printf("借阅成功!\n");
+                    booknum--;
+                    for (int i = 0; i < booknum; i++) {
+                        printf("%d. %s", i+1, books[i]);
+                        printf("\n");
+                    }
+                    getchar();
                     break;
                 case 52: //52是4的ASCII码
+                    if (islogin == 0) {
+                        printf("请登入后再尝试!\n");
+                        break;
+                    }
+                    if (borrownum == 0) {
+                        printf("您没有借阅任何书籍!\n");
+                        break;
+                    }
+                    printf("您目前借阅的书籍有:\n");
+                    for (int i = 0; i < borrownum; i++) {
+                        printf("%d. %s", i+1, borrowed_books[i]);
+                        printf("\n");
+                    }
+                    printf("请输入您要归还的书籍编号:");
+                    scanf("%d", &choicebooks2);
+                    if (choicebooks2 > borrownum || choicebooks2 < 1) {
+                        printf("输入错误!\n");
+                        break;
+                    }
+                    booknum++;
+                    strcpy(borrowbookname, borrowed_books[choicebooks2-1]);
+                    strcpy(books[booknum-1], borrowbookname);
+                        for (int i = choicebooks2 - 1; i < 8; i++) {
+                        strcpy(borrowed_books[i], borrowed_books[i + 1]);
+                    }
+//                    booknum++;
+                    borrownum--;
+                    printf("还书成功!\n");
+                    printf("本馆目前库存如下:\n");
+                    for (int i = 0; i < booknum; i++) {
+                        printf("%d. %s", i+1, books[i]);
+                        printf("\n");
+                    }
+                    getchar();
                     break;
                 case 53: //53是5的ASCII码
                     printf("注销成功!\n");
@@ -126,6 +181,28 @@ int main() {
             }
         } else {
             printf("输入错误!请输入数字!\n");
+        }
+        printf("是否继续?(y/n)\n");
+        scanf("%c", &iscontinue);
+        getchar();
+        for (;iscontinue != 'Y' && iscontinue != 'N' && iscontinue != 'y' && iscontinue != 'n';) {
+            printf("输入错误!请输入y或n!\n");
+            scanf("%c", &iscontinue);
+            getchar();
+        }
+        if (iscontinue == 'Y') {
+            continue;
+        } else if (iscontinue == 'N') {
+            printf("感谢您的使用!\n");
+            break;
+        } else if (iscontinue == 'y') {
+            continue;
+        } else if (iscontinue == 'n') {
+            printf("感谢您的使用!\n");
+            break;
+        } else {
+            printf("输入错误!\n");
+            break;
         }
     }
     return 0;
