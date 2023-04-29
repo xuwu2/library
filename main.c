@@ -6,6 +6,7 @@
 
 int main() {
     int a;
+    int choicebooks;
     int choice;
     int usernum = 0;
     int found = 0;
@@ -17,7 +18,18 @@ int main() {
     char user[usernum][100];
     char password[usernum][100];
     int borrowed_books[9];
+    char bookname[100];
     char books[9][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治", "历史", "地理"};
+
+    char books8[8][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治", "历史"};
+    char books7[7][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治"};
+    char books6[6][100] = {"数学", "语文", "英语", "化学", "物理", "生物"};
+    char books5[5][100] = {"数学", "语文", "英语", "化学", "物理"};
+    char books4[4][100] = {"数学", "语文", "英语", "化学"};
+    char books3[3][100] = {"数学", "语文", "英语"};
+    char books2[2][100] = {"数学", "语文"};
+    char books1[1][100] = {"数学"};
+
     printf("欢迎使用图书管理系统!\n");
     for (choice = 0; choice != 48;) {
         printf("选择您的需求:(输入数字即可:)\n");
@@ -84,8 +96,20 @@ int main() {
                         printf("\n");
                     }
                     printf("请输入您要借阅的书籍编号:");
-//                    scanf("%d", &borrowed_books[0]);
-//                    getchar();
+                    scanf("%d", &choicebooks);
+                    if (choicebooks > 9 || choicebooks < 1) {
+                        printf("输入错误!\n");
+                        break;
+                    }
+//                    strcpy(bookname, books[choicebooks-1]);
+//                    for (int i = bookname[0]; i < 9; i++) {
+//                        strcpy(books[i-1], books[i]);
+//                    }
+                    strcpy(bookname, books[choicebooks-1]);
+                    for (int i = choicebooks - 1; i < 8; i++) {
+                        strcpy(books[i], books[i + 1]);
+                    }
+                    strcpy(books[8], "");
                     break;
                 case 52: //52是4的ASCII码
                     break;
