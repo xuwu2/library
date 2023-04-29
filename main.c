@@ -182,27 +182,26 @@ int main() {
         } else {
             printf("输入错误!请输入数字!\n");
         }
-        printf("是否继续?(y/n)\n");
-        scanf("%c", &iscontinue);
-        getchar();
-        for (;iscontinue != 'Y' && iscontinue != 'N' && iscontinue != 'y' && iscontinue != 'n';) {
-            printf("输入错误!请输入y或n!\n");
+        if (choice != 48) {
+            printf("是否继续?(y/n)\n");
             scanf("%c", &iscontinue);
             getchar();
-        }
-        if (iscontinue == 'Y') {
-            continue;
-        } else if (iscontinue == 'N') {
-            printf("感谢您的使用!\n");
-            break;
-        } else if (iscontinue == 'y') {
-            continue;
-        } else if (iscontinue == 'n') {
-            printf("感谢您的使用!\n");
-            break;
-        } else {
-            printf("输入错误!\n");
-            break;
+            for (; iscontinue != 'Y' && iscontinue != 'N' && iscontinue != 'y' && iscontinue != 'n';) {
+                printf("输入错误!请输入y或n!\n");
+                scanf("%c", &iscontinue);
+                getchar();
+            }
+            if (iscontinue == 'Y') {
+                continue;
+            } else if (iscontinue == 'N') {
+                printf("感谢您的使用!\n");
+                break;
+            } else if (iscontinue == 'y') {
+                continue;
+            } else if (iscontinue == 'n') {
+                printf("感谢您的使用!\n");
+                break;
+            }
         }
     }
     return 0;
