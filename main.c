@@ -87,6 +87,7 @@ int main() {
                         found = 0;
                         islogin = 1;
                     } else {
+                        found = 0;
                         printf("µÇÂ¼Ê§°Ü!\n");
                     }
                     getchar();
