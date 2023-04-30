@@ -13,6 +13,7 @@ int main() {
     int choice;
     int usernum = 0;
     int found = 0;
+    int userfound = 0;
     int islogin = 0;
     char iscontinue;
     char newuser[100];
@@ -22,19 +23,8 @@ int main() {
     char user[usernum][100];
     char password[usernum][100];
     char borrowed_books[9][100];
-    char borrowbookname[100];
     char bookname[100];
     char books[9][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治", "历史", "地理"};
-
-//    char books8[8][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治", "历史"};
-//    char books7[7][100] = {"数学", "语文", "英语", "化学", "物理", "生物","政治"};
-//    char books6[6][100] = {"数学", "语文", "英语", "化学", "物理", "生物"};
-//    char books5[5][100] = {"数学", "语文", "英语", "化学", "物理"};
-//    char books4[4][100] = {"数学", "语文", "英语", "化学"};
-//    char books3[3][100] = {"数学", "语文", "英语"};
-//    char books2[2][100] = {"数学", "语文"};
-//    char books1[1][100] = {"数学"};
-
     printf("欢迎使用图书管理系统!\n");
     for (choice = 0; choice != 48;) {
         printf("选择您的需求:(输入数字即可:)\n");
@@ -50,16 +40,29 @@ int main() {
         getchar();
         choice = a;
         if (a <= '9' && a >= '0') {
-//            scanf("%d", &choice);
             switch (choice) {
                 case 49: //49是1的ASCII码
                     printf("请输入您的用户名:");
                     scanf("%s", newuser);
+                    if(usernum != 0) {
+                        for (int i = 0; i < usernum; i++) {
+                            if (strcmp(newuser, user[i]) == 0) {
+                                printf("该用户名已被注册!\n");
+                                userfound = 1;
+                                break;
+                            }
+                        }
+                    }
+                    if (userfound == 1) {
+                        userfound = 0;
+                        getchar();
+                        break;
+                    }
                     printf("请输入您的密码:");
                     scanf("%s", newpassword);
-                    printf("注册成功!\n");
                     strcpy(user[usernum], newuser);
                     strcpy(password[usernum], newpassword);
+                    printf("注册成功!\n");
                     usernum++;
                     getchar();
                     break;
@@ -112,10 +115,6 @@ int main() {
                         printf("输入错误!\n");
                         break;
                     }
-//                    strcpy(bookname, books[choicebooks-1]);
-//                    for (int i = bookname[0]; i < 9; i++) {
-//                        strcpy(books[i-1], books[i]);
-//                    }
                     strcpy(bookname, books[choicebooks-1]);
                     for (int i = choicebooks - 1; i < 8; i++) {
                         strcpy(books[i], books[i + 1]);
@@ -123,7 +122,6 @@ int main() {
                     strcpy(books[8], "");
                     strcpy(borrowed_books[borrownum], bookname);
                     borrownum++;
-//                    strcpy(books8[8],books[8]);
                     printf("借阅成功!\n");
                     booknum--;
                     for (int i = 0; i < booknum; i++) {
@@ -153,12 +151,10 @@ int main() {
                         break;
                     }
                     booknum++;
-                    strcpy(borrowbookname, borrowed_books[choicebooks2-1]);
-                    strcpy(books[booknum-1], borrowbookname);
+                    strcpy(books[booknum-1], borrowed_books[choicebooks2-1]);
                         for (int i = choicebooks2 - 1; i < 8; i++) {
                         strcpy(borrowed_books[i], borrowed_books[i + 1]);
                     }
-//                    booknum++;
                     borrownum--;
                     printf("还书成功!\n");
                     printf("本馆目前库存如下:\n");
