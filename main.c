@@ -29,7 +29,7 @@ int main() {
         printf("2.登录\n");
         printf("3.借书\n");
         printf("4.还书\n");
-        if (islogin == 1) {
+        if (islogin == 1) {Definition of variable with array type needs an explicit size or an initializer
             printf("5.注销\n");
         }
         printf("0.退出程序\n");
@@ -84,6 +84,7 @@ int main() {
                     }
                     if(found == 1) {
                         printf("登录成功!\n");
+                        found = 0;
                         islogin = 1;
                     } else {
                         printf("登录失败!\n");
